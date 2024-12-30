@@ -1,4 +1,5 @@
 ﻿@page
+@using GestaoDeProfissionaisDomain.Model
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -6,68 +7,100 @@
 
 <div class="text-center">
 
-    <div class="container align-content-sm-end">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastro">
+    <div class="container ">
+        <button type="button" class="btn">Filtrar por:</button>
+        <butston type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastro">
             Adicionar
-        </button>
+            </button>
     </div>
 
-    <table class="table table-striped">
-        <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>Especialidade</th>
-            <th>Tipo do Documento</th>
-            <th>Número do Documento</th>
-            <th>Ações</th>
-        </tr>
-        <tr>
-            <td><code></code></td>
-            <td><code></code></td>
-            <td><code></code></td>
-            <td><code></code></td>
-            <td><code></code></td>
-            <td><code></code></td>
-            <td>
-                <div class="dropdown">
-                    <button class="btn " type="button" id="ddAcoes"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                            <path
-                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
-                        </svg>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="ddAcoes">
-                        <button class="dropdown-item" type="button">Action</button>
-                        <button class="dropdown-item" type="button">Another action</button>
-                        <button class="dropdown-item" type="button">Something else here</button>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
+    @if (Model.funcionarios.Count.Equals(0))
+    {
+        <h2>Não há profissionais cadastrados</h2>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Especialidade</th>
+                <th>Tipo do Documento</th>
+                <th>Número do Documento</th>
+                <th>Ações</th>
+            </tr>
+
+            @foreach (Funcionario funcionario in Model.funcionarios)
+            {
+                <tr>
+                    <td>funcionario.Id</td>
+                    <td>funcionario.Nome</td>
+                    <td>funcionario.Especialidade.Nome</td>
+                    <td>funcionario.Especialidade.TipoDocumento.Nome</td>
+                    <td>funcionario.NumDocumento</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn " type="button" id="ddAcoes" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                                </svg>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="ddAcoes">
+                                <button class="dropdown-item" type="button">Action</button>
+                                <button class="dropdown-item" type="button">Another action</button>
+                                <button class="dropdown-item" type="button">Something else here</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
 
 
 
 
     <div class="modal" id="cadastro" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Cadastro do Profissional</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <label>Nome</label>
-                    <label>Especialidade</label>
-                    <label>Tipo do Documento</label>
-                    <label>Número do documento</label>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-outline-primary">Salvar</button>
-                </div>
+                <form>
+                    <div class="modal-body">
+                        <div>
+                            <label class="form-label">Nome</label>
+                            <input class="form-control" type="text" maxlength="50" required />
+                        </div>
+                        <div>
+                            <label class="form-label">Especialidade:</label>
+                            <select class="form-select" aria-label="" required>
+                                @foreach (Especialidade especialidade in Model.especialidades)
+                                {
+                                    <option>especialidade.Nome</option>
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label">Tipo de Documento:</label>
+                            <input class="form-control" disabled>
+                        </div>
+                        <div>
+                            <label class="form-label">Número do documento:</label>
+                            <input class="form-control" type="text" required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-primary">Salvar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

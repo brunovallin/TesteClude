@@ -1,5 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <ItemGroup>
+    <ProjectReference Include="..\AppBack\GestaoDeProfissionaisCludeAPI\GestaoDeProfissionaisCludeAPI.csproj" />
+    <ProjectReference Include="..\AppBack\GestaoDeProfissionaisDomain\GestaoDeProfissionaisDomain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.5.1" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
