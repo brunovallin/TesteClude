@@ -11,7 +11,7 @@ namespace GestaoDeProfissionaisPersistence
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-        public DbSet<Funcionario> Funcionarios { get; set; }
+        public DbSet<Profissional> Profissionais { get; set; }
         public DbSet<Especialidade> Especialidades { get; set; }
         public DbSet<TipoDocumento> TipoDocumentos { get; set; }
 
@@ -27,7 +27,6 @@ namespace GestaoDeProfissionaisPersistence
             foreach (var item in Enum.GetValues(typeof(TipoDocumentoEnum)))
                 tiposDocumentos.Add(new TipoDocumento() { Id = (int)item, Nome = ((TipoDocumentoEnum)item).ToString() });
 
-            modelBuilder.Entity<TipoDocumento>().HasKey(d => d.Id);
             modelBuilder.Entity<TipoDocumento>().HasData(tiposDocumentos);
 
             foreach (var item in Enum.GetValues(typeof(EspecialidadesEnum)))

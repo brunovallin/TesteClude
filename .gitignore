@@ -7,3 +7,4 @@ AppBack/GestaoDeProfissionaisPersistence/bin/*
 AppBack/GestaoDeProfissionaisPersistence/obj/*
 GestaoDeProfissionaisCludeApp/bin/*
 GestaoDeProfissionaisCludeApp/obj/*
+.vscode/launch.json

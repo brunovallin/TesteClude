@@ -1,6 +1,6 @@
 @GestaoDeProfissionaisCludeAPI_HostAddress = http://localhost:5076
 
-GET {{GestaoDeProfissionaisCludeAPI_HostAddress}}/weatherforecast/
+GET {{GestaoDeProfissionaisCludeAPI_HostAddress}}/
 Accept: application/json
 
 ###

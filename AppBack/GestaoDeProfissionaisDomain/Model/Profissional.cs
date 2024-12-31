@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GestaoDeProfissionaisDomain.Model;
 
-public class Funcionario
+public class Profissional
 {
     public int Id { get; set; }
     public string Nome { get; set; }
