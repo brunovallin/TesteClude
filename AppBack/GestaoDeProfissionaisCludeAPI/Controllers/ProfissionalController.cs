@@ -14,7 +14,6 @@ namespace GestaoDeProfissionaisCludeAPI.Controllers
         public ProfissionalController(IProfissionalService profissionalService)
         {
             _profissionalService = profissionalService;
-
         }
 
         [HttpGet]

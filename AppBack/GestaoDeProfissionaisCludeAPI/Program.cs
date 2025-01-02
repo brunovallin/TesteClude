@@ -22,8 +22,11 @@ builder.Services.AddDbContext<DataContext>(
  );
  
 builder.Services.AddScoped<IProfissionalService,ProfissionalService>();
+builder.Services.AddScoped<IEspecialidadeService,EspecialidadeService>();
 builder.Services.AddScoped<IPersistenciaGeral, GeralPersistencia>();
 builder.Services.AddScoped<IProfissionalPersistencia,ProfissionalPersistencia>();
+builder.Services.AddScoped<IEspecialidadePersistencia,EspecialidadePersistencia>();
+
 
 var app = builder.Build();
 
