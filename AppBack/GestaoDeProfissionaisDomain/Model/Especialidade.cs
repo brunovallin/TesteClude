@@ -6,9 +6,9 @@ namespace GestaoDeProfissionaisDomain.Model;
 public class Especialidade
 {
     [Key]
-    [Required]
+    [Index(IsUnique = true)]
     public int Id { get; set;}
-    public string Nome { get; set;}
+    public string? Nome { get; set;}
     public int TipoDocumentoID { get; set;}
     public TipoDocumento? TipoDocumento { get; set;}
 }

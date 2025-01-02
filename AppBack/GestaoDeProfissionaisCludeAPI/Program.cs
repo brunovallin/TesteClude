@@ -1,4 +1,8 @@
+using GestaoDeProfissionaisCludeAPI.Interfaces;
+using GestaoDeProfissionaisCludeAPI.Services;
 using GestaoDeProfissionaisPersistence;
+using GestaoDeProfissionaisPersistence.Interface;
+using GestaoDeProfissionaisPersistence.Persistencias;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +20,10 @@ builder.Services.AddDbContext<DataContext>(
  context => context.UseSqlite(builder.Configuration.GetConnectionString("Default") 
         ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found."))
  );
+ 
+builder.Services.AddScoped<IProfissionalService,ProfissionalService>();
+builder.Services.AddScoped<IPersistenciaGeral, GeralPersistencia>();
+builder.Services.AddScoped<IProfissionalPersistencia,ProfissionalPersistencia>();
 
 var app = builder.Build();
 
@@ -27,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+app.MapControllers();
 app.UseHttpsRedirection();
 
 app.UseRouting();

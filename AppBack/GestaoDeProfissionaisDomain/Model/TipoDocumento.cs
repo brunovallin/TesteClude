@@ -6,7 +6,7 @@ namespace GestaoDeProfissionaisDomain.Model;
 public class TipoDocumento
 {
     [Key]
-    [Required]
+    [Index(IsUnique = true)]
     public int Id { get; set; }
-    public string Nome { get; set;}
+    public string? Nome { get; set;}
 }

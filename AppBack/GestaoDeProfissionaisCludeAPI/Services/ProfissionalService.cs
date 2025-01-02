@@ -7,10 +7,10 @@ namespace GestaoDeProfissionaisCludeAPI.Services;
 
 public class ProfissionalService : IProfissionalService
 {
-    private readonly IPersistencia _geralPersistencia;
-    private readonly IProfissionalService _profissionalPersistencia;
+    private readonly IPersistenciaGeral _geralPersistencia;
+    private readonly IProfissionalPersistencia _profissionalPersistencia;
 
-    public ProfissionalService(IPersistencia geralPersistencia, IProfissionalService profissionalPersistencia)
+    public ProfissionalService(IPersistenciaGeral geralPersistencia, IProfissionalPersistencia profissionalPersistencia)
     {
         _geralPersistencia = geralPersistencia;
         _profissionalPersistencia = profissionalPersistencia;
@@ -20,7 +20,8 @@ public class ProfissionalService : IProfissionalService
     {
         try
         {
-            _geralPersistencia.Add<Profissional>(model);
+            model.DataDeCadastro = model.DataUltimaAlteracao = DateTime.Now;
+            _geralPersistencia.Add(model);
             if (await _geralPersistencia.SaveChangesAsync())
                 return await _profissionalPersistencia.GetProfissionalById(model.Id);
             return null;
@@ -37,8 +38,9 @@ public class ProfissionalService : IProfissionalService
         {
             var profissional = await _profissionalPersistencia.GetProfissionalById(profissionalId);
             if (profissional is null) return null;
-
+   
             model.Id = profissional.Id;
+            model.DataUltimaAlteracao = DateTime.Now;
 
             _geralPersistencia.Update(model);
             if (await _geralPersistencia.SaveChangesAsync())
