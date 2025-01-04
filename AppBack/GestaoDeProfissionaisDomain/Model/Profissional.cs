@@ -12,7 +12,7 @@ public class Profissional
     public int EspecialidadeID {get;set;}
     
     public Especialidade? Especialidade { get; set; }
-    public int NumDocumento { get; set; }
+    public string NumDocumento { get; set; }
     [DataType(DataType.DateTime)]
     [NotMapped]
     public DateTime DataDeCadastro { get; set; }

@@ -45,6 +45,9 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseCors(cors => cors.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin());
 app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 app.Run();

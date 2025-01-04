@@ -1,0 +1,58 @@
+<div class="container">
+<div action="" class="form-inline">
+  <div class="form-group mb2" [(ngModel)]="filtroLista">
+    <button class="btn btn-outline-success">Filtrar por: {{filtroLista}}</button>
+  </div>
+</div>
+
+<table class="table table-stripped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Especialidade</th>
+      <th>Tipo de Documento</th>
+      <th>Número do Documento</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody *ngIf='profissionais && profissionais.length'>
+    <tr *ngFor="let profissional of profissionais">
+      <td>{{profissional.id}}</td>
+      <td>{{profissional.nome}}</td>
+      <td>{{profissional.especialidade.nome}}</td>
+      <td>{{profissional.especialidade.tipoDocumento.nome}}</td>
+      <td>{{profissional.numDocumento}}</td>
+      <td>
+
+        <div class="btn-group" dropdown>
+          <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+            <i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                    <path
+                        d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                </svg></i>
+          </button>
+          <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+              role="menu">
+            <li role="menuitem"><a class="dropdown-item btn-primary" href="#">Editar</a></li>
+            <li role="menuitem"><a class="dropdown-item btn-danger" (click)="openModal(template)">Excluir</a>
+            </li>
+          </ul>
+        </div>
+    </tr>
+  </tbody>
+  <tfoot *ngIf='profissionais.length===0'>
+    <tr>
+      <td colspan="6" class="text-center">
+        Não há profissionais cadastrados
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+
+<ng-template #template>
+  <app-excluir [modalExterna]={{this.modalService}}></app-excluir>
+</ng-template>
+</div>

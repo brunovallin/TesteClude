@@ -1,0 +1,27 @@
+<form class="form-group" method="post">
+  <div class="modal-body">
+      <div>
+          <label class="form-label">Nome</label>
+          <input name="txtNome" id="=txtNome" class="form-control" type="text" maxlength="50" required />
+      </div>
+      <div>
+          <label class="form-label">Especialidade:</label>
+          <select name="ddlEspecialidade" id="ddlEspecialidade" class="form-select" aria-label="" required>
+
+          </select>
+      </div>
+      <div>
+          <label class="form-label">Tipo de Documento:</label>
+          <input id="txtTipoDocumento" name="txtTipoDocumento" class="form-control" disabled>
+      </div>
+      <div>
+          <label class="form-label">Número do documento:</label>
+          <input id="txtNumDocumento" name="txtNumDocumento"class="form-control" type="text" required>
+      </div>
+
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-outline-primary">Salvar</button>
+  </div>
+</form>
